@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Randomizer</title>
+    <style>
+        body {
+            background-color: #778da9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .content {
+            background-color: #415a77; 
+            padding: 20px;
+            border-radius: 10px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            
+        }
+        label {
+            display: block;
+            text-align: center;
+            
+        }
+        h1, h2, p,ul {
+            color: #0d1b2a; 
+        }
+        input{
+            background-color: #e0e1dd;
+        }
+        button{
+            background-color: #778da9;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <div class="content">
+        <form> 
+            <h1>
+                <label for="input">ใส่สิ่งที่อยากสุ่มเลย!!! </label>
+            </h1> 
+            <label >
+                <input type="text" id="input">
+                <button  type="button" onclick="addValue()">เพิ่ม</button>
+            </label>  
+        </form>
+
+        <div>
+            <h2>มีอะไรอยู่ในลิสต์บ้างตอนนี้</h2>
+            <h3>
+                <ul id="valueList"></ul>
+            </h3>
+            <button type="button" onclick="randomValue()">สุ่มเลย!!</button>
+            <p id="randomResult"></p>
+        </div>
+    </div>
+
+    <script>
+        let values = [];
+
+        function addValue() {
+            const inputValue = document.getElementById('input').value;
+            values.push(inputValue);
+            document.getElementById('valueList').innerHTML += `<li>${inputValue}</li>`;
+            document.getElementById('input').value = '';
+        }
+
+        function randomValue() {
+            if (values.length === 0) {
+                document.getElementById('randomResult').textContent = 'โปรดใส่ข้อมูล';
+            } else {
+                const randomIndex = Math.floor(Math.random() * values.length);
+                const randomElement = values[randomIndex];
+                document.getElementById('randomResult').textContent = `สุ่มได้: ${randomElement}`;
+            }
+        }
+    </script>
+</body>
+</html>
